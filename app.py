@@ -1,7 +1,7 @@
 from flask import Flask, request, jsonify, render_template
 import requests
 
-LED_APP_URL = "http://0.0.0.0:8001"
+LED_APP_URL = "http://10.0.0.110:8001"
 
 # Flask app initialization
 app = Flask(__name__)
@@ -24,6 +24,7 @@ def set_colors():
             print(response)
             return jsonify({"error": "Failed to update colors on external server."}), response.status_code
     except requests.exceptions.RequestException as e:
+        print(e)
         return jsonify({"error": f"Request to external server failed: {e}"}), 500
 
 # Run the Flask app

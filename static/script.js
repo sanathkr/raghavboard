@@ -46,11 +46,11 @@ function getPixelsForNumber(num) {
     BLACK = [0, 0, 0];
 
     PIXELS_TO_COLOR = {
-        1: [5, 6],
-        2: [10, 11],
-        3: [15, 16],
-        4: [20, 21],
-        5: [25, 26]
+        5: [8, 9],
+        4: [14, 15],
+        3: [20, 21],
+        2: [25, 26],
+        1: [31, 32],
     }
 
     // Initialize with Black
