@@ -1,0 +1,23 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, sans-serif;
+}
+
+#numberButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80vmin; /* 80% of the smaller viewport dimension */
+    height: 80vmin; /* Ensures the button stays square */
+    font-size: 5vw;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    text-align: center;
+}
