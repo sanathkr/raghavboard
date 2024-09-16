@@ -11,7 +11,11 @@ is_raspberry_pi = platform.system() != 'Darwin'  # 'Darwin' is for macOS
 if is_raspberry_pi:
     import board
     import neopixel
-    PIXEL_PIN = board.D18  # GPIO pin connected to the NeoPixels
+
+    # Connect LED’s DIN to GPIO10 (physical pin 19) so we don't need Sudo to run Neopixel
+    # https://docs.circuitpython.org/projects/neopixel/en/latest/
+    PIXEL_PIN = board.D10  # GPIO pin connected to the NeoPixels
+
     NUM_PIXELS = 40  # Number of NeoPixels
     ORDER = neopixel.RGB  # Color order (depends on your NeoPixels, can also be RGB or other)
     
