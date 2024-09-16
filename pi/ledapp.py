@@ -43,10 +43,6 @@ def set_colors():
     pixels.show()  # Update the LED strip
     return jsonify({"message": "Colors updated successfully!"}), 200
 
-@app.teardown_appcontext
-def clearpixels():
-    pixels.fill((0, 0, 0))
-
 # Run the Flask app
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8001)
