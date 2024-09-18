@@ -1,13 +1,37 @@
 let currentNumber = 1;
+number_to_animal = {
+    1: "cat",
+    2: "cow",
+    3: "duck",
+    4: "horse",
+    5: "lion",
+}
+
+
+document.addEventListener('keydown', function(event) {
+    if (event.code === 'Enter') {
+        console.log('Enter key pressed');
+        scanning()
+
+    } else if (event.code === 'Space') {
+        console.log('Space key pressed');
+        // Add your action for Space key here
+        selection()
+    }
+});
 
 // Function to cycle numbers and update button text
-function cycleNumber() {
+function scanning() {
     currentNumber = (currentNumber % 5) + 1;
-    document.getElementById('numberButton').textContent = currentNumber;
+    numberButton = document.getElementById('numberButton');
+    numberButton.textContent = number_to_animal[currentNumber];
+}
 
+function selection() {
     // Speak the current number
     setColors(currentNumber)
-    speakNumber(currentNumber);
+    speakAnimal(currentNumber);
+    // speakNumber(currentNumber);
 }
 
 // Function to use speech synthesis to speak the number with child-like voice properties
@@ -20,6 +44,13 @@ function speakNumber(number) {
 
     // Speak the number
     speechSynthesis.speak(utterance);
+}
+
+function speakAnimal(number) {
+
+    animal = number_to_animal[number];
+    const audio = new Audio(`static/sounds/${animal}.mp3`);
+    audio.play();
 }
 
 function setColors(currentNumber) {
@@ -66,4 +97,4 @@ function getPixelsForNumber(num) {
 
 
 // Attach click event to the button
-document.getElementById('numberButton').addEventListener('click', cycleNumber);
+document.getElementById('numberButton').addEventListener('click', selection);

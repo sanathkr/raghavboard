@@ -1,7 +1,14 @@
 from flask import Flask, request, jsonify, render_template
 import requests
+import platform
 
-LED_APP_URL = "http://10.0.0.110:8001"
+# Detect if running on Raspberry Pi by checking the platform
+is_raspberry_pi = platform.system() != 'Darwin'  # 'Darwin' is for macOS
+
+
+LED_APP_URL = "http://0.0.0.0:8001"
+if is_raspberry_pi:
+    LED_APP_URL = "http://10.0.0.110:8001"
 
 # Flask app initialization
 app = Flask(__name__)

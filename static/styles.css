@@ -20,4 +20,5 @@ body, html {
     border-radius: 10px;
     cursor: pointer;
     text-align: center;
+    text-transform: capitalize;
 }
