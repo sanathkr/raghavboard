@@ -1,10 +1,10 @@
 let currentNumber = 1;
 number_to_animal = {
     1: "cat",
-    2: "cow",
-    3: "duck",
-    4: "horse",
-    5: "lion",
+    2: "horse",
+    3: "lion",
+    4: "cow",
+    5: "duck",
 }
 
 
@@ -25,11 +25,11 @@ function scanning() {
     currentNumber = (currentNumber % 5) + 1;
     numberButton = document.getElementById('numberButton');
     numberButton.textContent = number_to_animal[currentNumber];
+    setColors(currentNumber)
 }
 
 function selection() {
-    // Speak the current number
-    setColors(currentNumber)
+    // Speak the current number  
     speakAnimal(currentNumber);
     // speakNumber(currentNumber);
 }
