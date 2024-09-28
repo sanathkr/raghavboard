@@ -7,8 +7,8 @@ number_to_animal = {
     5: "duck",
 }
 
-
 document.addEventListener('keydown', function(event) {
+
     if (event.code === 'Enter') {
         console.log('Enter key pressed');
         scanning()
@@ -22,6 +22,7 @@ document.addEventListener('keydown', function(event) {
 
 // Function to cycle numbers and update button text
 function scanning() {
+    cancelAudioPlay()
     currentNumber = (currentNumber % 5) + 1;
     numberButton = document.getElementById('numberButton');
     numberButton.textContent = number_to_animal[currentNumber];
@@ -46,11 +47,40 @@ function speakNumber(number) {
     speechSynthesis.speak(utterance);
 }
 
+let audio = null;  // Declare the audio object outside the function to track it globally
+let isAudioPlaying = false;  // Track if audio is currently playing
+
 function speakAnimal(number) {
+    if (isAudioPlaying) {
+        console.log("Audio is already playing. Ignoring new request.");
+        return;  // Exit the function if audio is already playing
+    }
 
     animal = number_to_animal[number];
-    const audio = new Audio(`static/sounds/${animal}.mp3`);
+    audio = new Audio(`static/sounds/${animal}.mp3`);
+
+    // Set the flag to true when audio starts playing
+    isAudioPlaying = true;
+
+    // Play the audio
     audio.play();
+
+    // When the audio ends, reset the flag
+    audio.onended = function () {
+        isAudioPlaying = false;
+        console.log("Audio finished playing.");
+    };
+}
+
+function cancelAudioPlay() {
+
+    // Cancel the audio if it's playing
+    if (audio && isAudioPlaying) {
+        audio.pause();
+        audio.currentTime = 0;  // Reset audio to the start
+        isAudioPlaying = false;  // Update the flag
+        console.log("Audio cancelled.");
+    }
 }
 
 function setColors(currentNumber) {
